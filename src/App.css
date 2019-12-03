@@ -20,3 +20,142 @@
 .App-link {
   color: #09d3ac;
 }
+
+.tab:hover {
+  cursor: pointer !important;
+}
+
+.artist-card-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 85%;
+  /* border: 1px solid #ffffff; */
+  color: #ffffff;
+  margin: 0 auto 10px;
+  border-radius: 10px;
+  padding: 5px;
+  /* background-color: #0a0a0a; */
+  align-items: center;
+  /* box-shadow: 0px 0px 5px 0px #bababb; */
+}
+
+.artist-img-wrapper {
+  height: 100px;
+  width: 100px;
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+.artist-img {
+  height: 100%;
+  width: 100%;
+  clip-path: circle(50%);
+}
+
+.tab-title {
+  width: 80%;
+  margin: 20px auto 20px auto;
+}
+
+.tab {
+  margin: 0 5px;
+  color: #cccccc5c;
+  font-style: italic;
+}
+
+.active-tab {
+  font-weight: bolder;
+  color:#1DB954;
+  font-style: normal;
+}
+
+.album-card-wrapper {
+  height: 80vh;
+  min-height: 80vh;
+  width: 100%;
+  min-width: 80%;
+  position: relative;
+  margin: auto 20px;
+}
+
+.albumlist-wrapper {
+  display: flex;
+  width: 100%;
+  overflow-x: scroll;
+}
+
+.album-art {
+  height: inherit;
+  width: inherit;
+  object-fit: cover;
+  border-radius: 10px;
+  opacity: 0.8;
+}
+
+.album-list-id {
+  position: absolute;
+  right: 10px;
+  font-size: 30px;
+  font-weight: bolder;
+  color: #1DB954;
+  text-shadow: 1px 1px 0px #fff;
+}
+
+.album-footer {
+  position: absolute;
+  bottom: 10px;
+  max-width: 80%;
+  left: 0px;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.album-title {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.album-artist {
+  display: block;
+}
+
+.dark-text-shadow {
+  text-shadow: 2px 1px 2px #000;
+}
+
+.track-card-wrapper {
+  display: flex;
+  height: 60px;
+  margin: 0px auto 20px auto;
+  width: 90%;
+  align-items: center;
+  border-bottom: 1px solid #f5f3f333;
+  padding-bottom: 20px;
+}
+
+.track-art {
+  height: inherit;
+  margin-right: 20px;
+}
+
+.track-list-id {
+  margin-right: 20px;
+  font-size: 20px;
+}
+
+.track-title-artist-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.track-title {
+  font-weight: 600;
+  font-size: 18px;
+  text-align: left;
+}
+
+.track-artist {
+  font-weight: lighter;
+}
