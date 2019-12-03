@@ -59,9 +59,10 @@
 }
 
 .tab {
-  margin: 0 5px;
+  margin: 0 10px;
   color: #cccccc5c;
   font-style: italic;
+  font-size: 20px;
 }
 
 .active-tab {
