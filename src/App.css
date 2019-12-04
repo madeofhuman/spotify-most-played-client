@@ -165,3 +165,19 @@
 .track-artist {
   font-weight: lighter;
 }
+
+.footer-text, .footer-text a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 400;
+  position: relative;
+  bottom: 0;
+}
+
+.footer-text a {
+  font-weight: bolder;
+}
+
+.footer-text a:hover {
+  cursor: pointer;
+}

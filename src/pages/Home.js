@@ -3,6 +3,7 @@ import Cookies from 'js-cookie';
 import { refreshAccessToken, fetchUser } from '../services';
 import ProfileContext from '../providers/ProfileContext';
 import Listens from '../components/Listens';
+import Footer from '../components/Footer';
 
 const oauthUrl = `${process.env.REACT_APP_SPOTIFY_OAUTH_URL}?client_id=${process.env.REACT_APP_CLIENT_ID}&response_type=code&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&scope=${process.env.REACT_APP_SCOPE}`;
 
@@ -69,6 +70,7 @@ const Home = () => {
         : <div>
             <ProfileContext.Provider value={state.username}>
               <Listens />
+              <Footer />
             </ProfileContext.Provider>
           </div>
       }
