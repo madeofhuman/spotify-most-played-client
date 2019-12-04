@@ -16,20 +16,17 @@ const Home = () => {
     username: ''
   });
 
-  const getRefreshedAccessToken = async (setState, state) => {
+  const getRefreshedAccessToken = async () => {
     const refreshToken = Cookies.get('_sp_refresh_token');
     if (refreshToken && refreshToken.length) {
       const { ok, data } = await refreshAccessToken(refreshToken);
       if (ok) {
         Cookies.set('_sp_access_token', data.access_token);
         setState({ ...state, loading: false });
-        window.location.reload();
-      }
-      else {
+      } else {
         window.location.assign(oauthUrl);
       }
-    }
-    else {
+    } else {
       window.location.assign(oauthUrl);
     }
   }
@@ -38,13 +35,29 @@ const Home = () => {
     const accessToken = Cookies.get('_sp_access_token');
     if (!accessToken || !accessToken.length) {
       setState({ ...state, loading: true });
-      await getRefreshedAccessToken(setState, state);
-    }
-    const { ok, data: userData } = await fetchUser(accessToken);
-    if (ok) {
-      setState({ ...state, username: userData.display_name.split(' ')[0] });
+      await getRefreshedAccessToken();
     } else {
-      await getRefreshedAccessToken(setState, state);
+      setState({ ...state, loading: true });
+      const { ok, data } = await fetchUser(accessToken);
+      if (ok) {
+        setState({
+          username: data.display_name.split(' ')[0],
+          loading: false
+        });
+      } else {
+        await getRefreshedAccessToken();
+        const accessToken = Cookies.get('_sp_access_token');
+        setState({ ...state, loading: true });
+        const { ok, data } = await fetchUser(accessToken);
+        if (ok) {
+          setState({
+            username: data.display_name.split(' ')[0],
+            loading: false
+          });
+        } else {
+          window.location.assign(oauthUrl);
+        }
+      }
     }
   };
 
