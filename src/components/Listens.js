@@ -57,7 +57,7 @@ const Listens = () => {
         ? <h4>Loading...</h4>
         : <div>
             <ListensContext.Provider value={{ artists, tracks }}>
-              <div>
+              <div className="tabs-wrapper">
                 <span className={"tab active-tab"} onClick={handleTabSwap}>ARTISTS</span>
                 <span className={"tab"} onClick={handleTabSwap}>albums</span>
                 <span className={"tab"} onClick={handleTabSwap}>tracks</span>

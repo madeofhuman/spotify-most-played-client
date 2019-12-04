@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import ListensContext from '../providers/ListensContext';
+import ProfileContext from '../providers/ProfileContext';
 import AlbumCard from './AlbumCard';
 
 const serializeAlbums = (tracks) => {
@@ -22,10 +23,11 @@ const serializeAlbums = (tracks) => {
 
 const AlbumsList = () => {
   const { tracks } = useContext(ListensContext);
+  const username = useContext(ProfileContext);
   const serializedAlbums = serializeAlbums(tracks);
   return (
     <div>
-      <h3 className="tab-title">These were your most-played albums in the last year</h3>
+      <h3 className="tab-title">{username}, these were your most-played albums in the last year</h3>
       <div className="albumlist-wrapper">
         {serializedAlbums && serializedAlbums.length
           ? serializedAlbums.map((album, i) => <AlbumCard key={album.id} album={album} index={i+1} />)
