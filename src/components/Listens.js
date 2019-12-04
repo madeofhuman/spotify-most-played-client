@@ -11,19 +11,24 @@ const Listens = () => {
     getListens();
   }, []);
 
-  const [ artists, setArtists ] = useState({});
-  const [ tracks, setTracks ] = useState({});
-  const [ loading, setLoading ] = useState(false);
-  const [ renderTab, setRenderTab ] = useState('artists');
+  const [ state, setState ] = useState({
+    artists: {},
+    tracks: {},
+    loading: false,
+    renderTab: 'artists'
+  });
 
   const getListens = async () => {
-    setLoading(true);
+    setState({ ...state, loading: true});
     const accessToken = Cookies.get('_sp_access_token');
     const { ok, data } = await fetchListens(accessToken);
     if (ok) {
-      setArtists(data.artists);
-      setTracks(data.tracks);
-      setLoading(false);
+      setState({
+        ...state,
+        artists: data.artists,
+        tracks: data.tracks,
+        loading: false
+      })
     }
   };
 
@@ -35,7 +40,7 @@ const Listens = () => {
     });
     event.target.innerHTML = event.target.innerHTML.toUpperCase();
     event.target.className = "tab active-tab";
-    setRenderTab(event.target.innerHTML.toLowerCase());
+    setState({ ...state, renderTab: event.target.innerHTML.toLowerCase() });
   };
 
   const renderTabs = (activeTab) => {
@@ -53,17 +58,17 @@ const Listens = () => {
 
   return (
     <React.Fragment>
-      {loading
+      {state.loading
         ? <h4>Loading...</h4>
         : <div>
-            <ListensContext.Provider value={{ artists, tracks }}>
+            <ListensContext.Provider value={{ artists: state.artists, tracks: state.tracks }}>
               <div className="tabs-wrapper">
                 <span className={"tab active-tab"} onClick={handleTabSwap}>ARTISTS</span>
                 <span className={"tab"} onClick={handleTabSwap}>albums</span>
                 <span className={"tab"} onClick={handleTabSwap}>tracks</span>
               </div>
               <div>
-                {renderTabs(renderTab)}
+                {renderTabs(state.renderTab)}
               </div>
             </ListensContext.Provider>
           </div>
